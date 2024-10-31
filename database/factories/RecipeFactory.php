@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Author;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class RecipeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->words(asText: true),
+            'description' => $this->faker->text(),
+            'slug' => $this->faker->unique()->slug(),
+            'author_id' => Author::factory(),
         ];
     }
 }
