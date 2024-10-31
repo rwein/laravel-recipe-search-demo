@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Fail the commit if any of our commands return an error
+set -e
+
+echo "Running tests"
+./vendor/bin/sail phpunit
+
+echo "Running Pint"
+./vendor/bin/sail pint --test
+
+echo "Running PHPStan"
+./vendor/bin/sail php ./vendor/bin/phpstan analyse
+
+echo "All checks passed!"
