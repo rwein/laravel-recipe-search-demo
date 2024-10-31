@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
+            // Fulltext for search, even though we could use a b-tree. See comment on recipe migration for more details.
+            $table->string('email')->unique()->fulltext();
             $table->timestamps();
         });
     }
