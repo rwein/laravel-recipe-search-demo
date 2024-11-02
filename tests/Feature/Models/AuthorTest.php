@@ -3,6 +3,7 @@
 namespace Tests\Feature\Models;
 
 use App\Models\Author;
+use App\Models\Recipe;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -18,5 +19,19 @@ class AuthorTest extends TestCase
         $author = Author::factory()->create();
 
         $this->assertDatabaseHas(Author::class, ['id' => $author->id]);
+    }
+
+    /**
+     * Test our recipes() relationship on the model
+     */
+    public function test_an_author_has_many_recipes(): void
+    {
+        $author = Author::factory()->create();
+        $recipes = Recipe::factory()->count(3)->create(['author_id' => $author->id]);
+
+        $this->assertEquals(
+            $author->recipes()->pluck('id')->toArray(),
+            $recipes->pluck('id')->toArray()
+        );
     }
 }

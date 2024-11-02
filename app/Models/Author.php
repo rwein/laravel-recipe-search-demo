@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -22,10 +23,21 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereEmail($value)
  *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Recipe> $recipes
+ * @property-read int|null $recipes_count
+ *
  * @mixin \Eloquent
  */
 class Author extends Model
 {
     /** @use HasFactory<\Database\Factories\AuthorFactory> */
     use HasFactory;
+
+    /**
+     * @return HasMany<Recipe, $this>
+     */
+    public function recipes(): HasMany
+    {
+        return $this->hasMany(Recipe::class);
+    }
 }
