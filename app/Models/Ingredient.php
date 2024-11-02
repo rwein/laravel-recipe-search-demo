@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
@@ -22,10 +23,24 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Ingredient whereName($value)
  *
+ * @property-read \App\Models\IngredientRecipe|null $pivot
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Recipe> $recipes
+ * @property-read int|null $recipes_count
+ *
  * @mixin \Eloquent
  */
 class Ingredient extends Model
 {
     /** @use HasFactory<\Database\Factories\IngredientFactory> */
     use HasFactory;
+
+    /**
+     * @return BelongsToMany<Recipe, $this>
+     */
+    public function recipes(): BelongsToMany
+    {
+        return $this->belongsToMany(Recipe::class)
+            ->using(IngredientRecipe::class)
+            ->withPivot(['unit', 'amount']);
+    }
 }
