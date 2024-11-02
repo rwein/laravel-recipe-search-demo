@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\RecipeCreatingEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,4 +33,14 @@ class Recipe extends Model
 {
     /** @use HasFactory<\Database\Factories\RecipeFactory> */
     use HasFactory;
+
+    /**
+     * The event map for the model.
+     *
+     * @var array<string, class-string>
+     */
+    protected $dispatchesEvents = [
+        // Generates a slug automatically when the model is inserted into the DB for the first time
+        'creating' => RecipeCreatingEvent::class,
+    ];
 }
