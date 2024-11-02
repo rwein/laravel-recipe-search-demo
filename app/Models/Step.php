@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -26,10 +27,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Step whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Step whereRecipeId($value)
  *
+ * @property-read \App\Models\Recipe|null $recipe
+ *
  * @mixin \Eloquent
  */
 class Step extends Model
 {
     /** @use HasFactory<\Database\Factories\StepFactory> */
     use HasFactory;
+
+    /**
+     * @return BelongsTo<Recipe, $this>
+     */
+    public function recipe(): BelongsTo
+    {
+        return $this->belongsTo(Recipe::class);
+    }
 }

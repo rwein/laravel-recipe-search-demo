@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Models;
 
+use App\Models\Recipe;
 use App\Models\Step;
 use Tests\TestCase;
 
@@ -15,5 +16,15 @@ class StepTest extends TestCase
         $step = Step::factory()->create();
 
         $this->assertDatabaseHas(Step::class, ['id' => $step->id]);
+    }
+
+    /**
+     * Test that the recipe relationship works as expected
+     */
+    public function test_a_step_belongs_to_a_recipe(): void
+    {
+        $step = Step::factory()->create();
+
+        $this->assertInstanceOf(Recipe::class, $step->recipe);
     }
 }
