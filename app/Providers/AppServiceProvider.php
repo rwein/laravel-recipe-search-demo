@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\RecipeSlugService;
+use App\Services\RecipeSlugServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(RecipeSlugServiceInterface::class, RecipeSlugService::class);
     }
 
     /**
