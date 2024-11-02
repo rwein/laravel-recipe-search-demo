@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * @property int $amount
- * @property string|null $unit
+ * @property IngredientUnit|null $unit
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int $ingredient_id
@@ -24,10 +24,30 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|IngredientRecipe whereUnit($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|IngredientRecipe whereUpdatedAt($value)
  *
+ * @property-read string|null $unit_display_name
+ *
  * @mixin \Eloquent
  */
 class IngredientRecipe extends Pivot
 {
     /** @use HasFactory<\Database\Factories\IngredientRecipeFactory> */
     use HasFactory;
+
+    protected $casts = [
+        'unit' => IngredientUnit::class,
+    ];
+
+    /**
+     * Grabs the right display name based on the amount set for the ingredient.
+     */
+    public function getUnitDisplayNameAttribute(): ?string
+    {
+        if (! $this->unit) {
+            return null;
+        }
+
+        return $this->amount > 1
+            ? $this->unit->displayNamePlural()
+            : $this->unit->displayNameSingular();
+    }
 }
