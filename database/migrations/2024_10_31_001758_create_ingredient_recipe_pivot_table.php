@@ -11,9 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // We're going to be using a pivot table to attach ingredients to recipes. We don't want too much unnecessary
+        // duplication in the ingredients table, and this is a solution to that problem.
         Schema::create('ingredient_recipe', function (Blueprint $table) {
-            $table->id();
+            // The amount of this ingredient that should go into the recipe
+            $table->unsignedSmallInteger('amount');
+            // The units for the amount to put into the recipe. E.g. cups, grams, ounces, etc. Allow nullable to
+            // indicate when a unit doesn't make sense (e.g. "3 potatoes" doesn't need a unit).
+            $table->string('unit')->nullable();
             $table->timestamps();
+
+            // Foreign Keys
+            $table->unsignedBigInteger('ingredient_id')
+                ->references('id')
+                ->on('ingredients')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('recipe_id')
+                ->references('id')
+                ->on('recipes')
+                ->onDelete('cascade');
         });
     }
 
