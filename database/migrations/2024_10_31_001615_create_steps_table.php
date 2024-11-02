@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('steps', function (Blueprint $table) {
             $table->id();
+            $table->unsignedSmallInteger('order');
+            // Fulltext for search, even though we could use a b-tree. See comment on recipe migration for more details.
+            $table->text('instructions')->fulltext();
             $table->timestamps();
+
+            // Foreign Keys
+            $table->unsignedBigInteger('recipe_id')
+                ->references('id')
+                ->on('recipes')
+                ->onDelete('cascade');
         });
     }
 
