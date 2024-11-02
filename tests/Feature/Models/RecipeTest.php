@@ -2,7 +2,10 @@
 
 namespace Tests\Feature\Models;
 
+use App\Models\Ingredient;
+use App\Models\IngredientUnit;
 use App\Models\Recipe;
+use App\Models\Step;
 use Tests\TestCase;
 
 class RecipeTest extends TestCase
@@ -46,5 +49,40 @@ class RecipeTest extends TestCase
         $recipe->save();
 
         $this->assertEquals('override-slug', $recipe->slug);
+    }
+
+    /**
+     * Verify the ingredient pivot relationship works as intended.
+     */
+    public function test_a_recipe_belongs_to_many_ingredients()
+    {
+        $recipe = Recipe::factory()->create();
+        $ingredients = Ingredient::factory(3)->create();
+
+        $recipe->ingredients()->attach($ingredients, [
+            'unit' => IngredientUnit::G,
+            'amount' => 100,
+        ]);
+
+        $this->assertEquals(
+            $recipe->ingredients()->pluck('id')->toArray(),
+            $ingredients->pluck('id')->toArray()
+        );
+    }
+
+    /**
+     * Verify the steps relationship functions as expected.
+     */
+    public function test_a_recipe_has_many_steps(): void
+    {
+        $recipe = Recipe::factory()->create();
+        $steps = Step::factory(3)->create([
+            'recipe_id' => $recipe->id,
+        ]);
+
+        $this->assertEquals(
+            $recipe->steps()->pluck('id')->toArray(),
+            $steps->pluck('id')->toArray()
+        );
     }
 }
