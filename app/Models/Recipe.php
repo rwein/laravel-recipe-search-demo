@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
+ * Recipe model. Has a name and description. Belongs to an author. Has many ingredients (through a pivot). Has many
+ * steps.
+ *
  * @property int $id
  * @property string $name
  * @property string $description

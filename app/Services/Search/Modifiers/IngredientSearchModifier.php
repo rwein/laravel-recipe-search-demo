@@ -6,6 +6,11 @@ use App\Models\Recipe;
 use App\Services\Search\RecipeSearchServiceConfiguration;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * Responsible for configuring our builder to partial match ingredients.
+ *
+ * Gets consumed by our main service. @see RecipeSearchService
+ */
 class IngredientSearchModifier implements QueryModifierInterface
 {
     /**

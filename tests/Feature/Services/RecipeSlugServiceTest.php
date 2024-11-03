@@ -3,10 +3,14 @@
 namespace Tests\Feature\Services;
 
 use App\Models\Recipe;
+use App\Services\RecipeSlugService;
 use App\Services\RecipeSlugServiceInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @see RecipeSlugService
+ */
 class RecipeSlugServiceTest extends TestCase
 {
     use RefreshDatabase;

@@ -13,6 +13,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery;
 use Tests\TestCase;
 
+/**
+ * @see RecipeController
+ */
 class RecipeControllerTest extends TestCase
 {
     use RefreshDatabase;

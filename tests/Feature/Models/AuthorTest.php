@@ -7,6 +7,9 @@ use App\Models\Recipe;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @see Author
+ */
 class AuthorTest extends TestCase
 {
     use RefreshDatabase;

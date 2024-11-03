@@ -9,6 +9,9 @@ use App\Models\Step;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @see Recipe
+ */
 class RecipeTest extends TestCase
 {
     use RefreshDatabase;

@@ -8,6 +8,9 @@ use App\Models\Recipe;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @see Ingredient
+ */
 class IngredientTest extends TestCase
 {
     use RefreshDatabase;

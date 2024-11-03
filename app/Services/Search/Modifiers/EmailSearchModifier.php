@@ -3,9 +3,15 @@
 namespace App\Services\Search\Modifiers;
 
 use App\Models\Recipe;
+use App\Services\Search\RecipeSearchService;
 use App\Services\Search\RecipeSearchServiceConfiguration;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * Responsible for configuring our builder to search for a given email.
+ *
+ * Gets consumed by our main service. @see RecipeSearchService
+ */
 class EmailSearchModifier implements QueryModifierInterface
 {
     /**

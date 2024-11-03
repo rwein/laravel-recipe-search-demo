@@ -7,6 +7,9 @@ use App\Models\IngredientUnit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @see IngredientRecipe
+ */
 class IngredientRecipeTest extends TestCase
 {
     use RefreshDatabase;

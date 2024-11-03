@@ -2,9 +2,17 @@
 
 namespace App\Services;
 
+use App\Listeners\GenerateRecipeSlug;
 use App\Models\Recipe;
 use Illuminate\Support\Str;
+use Tests\Feature\Services\RecipeSlugServiceTest;
 
+/**
+ * Responsible for generating unique slugs for recipes.
+ *
+ * @see GenerateRecipeSlug for its use
+ * @see RecipeSlugServiceTest for tests
+ */
 class RecipeSlugService implements RecipeSlugServiceInterface
 {
     /**

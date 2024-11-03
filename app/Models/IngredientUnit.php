@@ -5,6 +5,8 @@ namespace App\Models;
 /**
  * Enum to guard the values we'll insert into the ingredient pivot table, as well as something for the rest of the
  * system to manage those values.
+ *
+ * @see IngredientRecipe
  */
 enum IngredientUnit: string
 {
@@ -22,6 +24,10 @@ enum IngredientUnit: string
     case KG = 'kg';
     case LB = 'lb';
 
+    /**
+     * Helper method to return the singular version of the unit for display purpose. This is to help prevent other
+     * implementation from having to know too much about how to display these units.
+     */
     public function displayNameSingular(): string
     {
         return match ($this) {
@@ -41,6 +47,9 @@ enum IngredientUnit: string
         };
     }
 
+    /**
+     * Plural version of the method above.
+     */
     public function displayNamePlural(): string
     {
         return match ($this) {

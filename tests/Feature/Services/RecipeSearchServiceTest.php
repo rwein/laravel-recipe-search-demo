@@ -6,12 +6,16 @@ use App\Models\Author;
 use App\Models\Ingredient;
 use App\Models\Recipe;
 use App\Models\Step;
+use App\Services\Search\RecipeSearchService;
 use App\Services\Search\RecipeSearchServiceConfiguration;
 use App\Services\Search\RecipeSearchServiceInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Tests\TestCase;
 
+/**
+ * @see RecipeSearchService
+ */
 class RecipeSearchServiceTest extends TestCase
 {
     use RefreshDatabase;

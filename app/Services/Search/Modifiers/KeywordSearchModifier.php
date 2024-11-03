@@ -6,6 +6,13 @@ use App\Models\Recipe;
 use App\Services\Search\RecipeSearchServiceConfiguration;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * Responsible for configuring our query builder to get recipe matches based on a keyword. Matches against: recipe
+ * title, recipe description, ingredient name, and step instructions. Does *not* partial match (but could be modified
+ * to easily).
+ *
+ * Gets consumed by our main service. @see RecipeSearchService
+ */
 class KeywordSearchModifier implements QueryModifierInterface
 {
     /**

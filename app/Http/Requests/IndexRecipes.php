@@ -2,8 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Controllers\Api\RecipeController;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Responsible for typing/checking the params we accept when indexing recipes.
+ *
+ * @see RecipeController
+ */
 class IndexRecipes extends FormRequest
 {
     /**

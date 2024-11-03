@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
+ * Pivot model that attaches ingredients and recipes.
+ *
  * @property int $amount
  * @property IngredientUnit|null $unit
  * @property \Illuminate\Support\Carbon|null $created_at

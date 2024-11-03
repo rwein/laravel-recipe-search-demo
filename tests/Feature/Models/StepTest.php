@@ -7,6 +7,9 @@ use App\Models\Step;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @see Step
+ */
 class StepTest extends TestCase
 {
     use RefreshDatabase;

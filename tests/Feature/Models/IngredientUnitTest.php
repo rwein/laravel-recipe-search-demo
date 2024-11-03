@@ -7,6 +7,8 @@ use Tests\TestCase;
 
 /**
  * This structure is not a model, but I've kept it in the models directory because it's used as a column caster.
+ *
+ * @see IngredientUnit
  */
 class IngredientUnitTest extends TestCase
 {
