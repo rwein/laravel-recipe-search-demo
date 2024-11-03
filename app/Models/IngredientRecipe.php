@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
@@ -38,6 +39,19 @@ class IngredientRecipe extends Pivot
     protected $casts = [
         'unit' => IngredientUnit::class,
     ];
+
+    /**
+     * When getting the amount, cast to an integer when possible.
+     *
+     * @return Attribute<int|float, null>
+     */
+    protected function amount(): Attribute
+    {
+        return Attribute::make(
+            /** @phpstan-ignore-next-line - we know this will always be an int or float */
+            get: fn (int|float $amount) => intval($amount) == $amount ? intval($amount) : $amount,
+        );
+    }
 
     /**
      * Grabs the right display name based on the amount set for the ingredient.
