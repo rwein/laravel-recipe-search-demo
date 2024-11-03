@@ -82,7 +82,7 @@ class RecipeTest extends TestCase
 
         $this->assertEquals(
             $recipe->steps()->pluck('id')->toArray(),
-            $steps->pluck('id')->toArray()
+            $steps->sortBy('order')->pluck('id')->toArray()
         );
     }
 }

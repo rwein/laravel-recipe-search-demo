@@ -67,7 +67,7 @@ class Recipe extends Model
      */
     public function steps(): HasMany
     {
-        return $this->hasMany(Step::class);
+        return $this->hasMany(Step::class)->orderBy('order');
     }
 
     /**
