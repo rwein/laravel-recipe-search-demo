@@ -4,10 +4,13 @@ namespace Tests\Feature\Models;
 
 use App\Models\Recipe;
 use App\Models\Step;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class StepTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic test just to ensure we can create a new step via a factory.
      */
