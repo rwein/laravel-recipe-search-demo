@@ -55,15 +55,21 @@ class IngredientRecipe extends Pivot
 
     /**
      * Grabs the right display name based on the amount set for the ingredient.
+     *
+     * @return Attribute<?string, null>
      */
-    public function getUnitDisplayNameAttribute(): ?string
+    public function unitDisplayName(): Attribute
     {
-        if (! $this->unit) {
-            return null;
-        }
+        return Attribute::make(
+            get: function () {
+                if (! $this->unit) {
+                    return null;
+                }
 
-        return $this->amount > 1
-            ? $this->unit->displayNamePlural()
-            : $this->unit->displayNameSingular();
+                return $this->amount > 1
+                    ? $this->unit->displayNamePlural()
+                    : $this->unit->displayNameSingular();
+            }
+        );
     }
 }
