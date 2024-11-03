@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             // Fulltext for search, even though we could use a b-tree. See comment on recipe migration for more details.
-            $table->string('name')->unique()->fulltext();
+            $table->string('name')->fulltext();
             $table->timestamps();
         });
     }
