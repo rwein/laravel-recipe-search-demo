@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-03",
   runtimeConfig: {
     public: {
-      apiUrl: process.env.API_URL || 'http://localhost:8888/api'
+      apiUrl: process.env.API_URL || 'http://localhost/api'
     }
   },
   modules: ['@nuxtjs/tailwindcss']
