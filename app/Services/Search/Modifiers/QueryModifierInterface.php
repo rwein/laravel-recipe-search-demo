@@ -19,5 +19,5 @@ interface QueryModifierInterface
     /**
      * @param  Builder<Recipe>  $query
      */
-    public function apply(Builder &$query, RecipeSearchServiceConfiguration $configuration): void;
+    public function apply(Builder $query, RecipeSearchServiceConfiguration $configuration): void;
 }

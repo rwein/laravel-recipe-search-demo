@@ -17,7 +17,7 @@ class EmailSearchModifier implements QueryModifierInterface
     /**
      * @param  Builder<Recipe>  $query
      */
-    public function apply(Builder &$query, RecipeSearchServiceConfiguration $configuration): void
+    public function apply(Builder $query, RecipeSearchServiceConfiguration $configuration): void
     {
         if (! $configuration->email) {
             return;
