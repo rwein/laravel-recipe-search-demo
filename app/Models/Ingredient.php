@@ -37,7 +37,7 @@ class Ingredient extends Model
     use HasFactory;
 
     /**
-     * @return BelongsToMany<Recipe, $this>
+     * @return BelongsToMany<Recipe, $this, IngredientRecipe>
      */
     public function recipes(): BelongsToMany
     {

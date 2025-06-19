@@ -14,7 +14,7 @@ interface RecipeSearchServiceInterface
     public function getQuery(RecipeSearchServiceConfiguration $configuration): Builder;
 
     /**
-     * @return LengthAwarePaginator<Recipe>
+     * @return LengthAwarePaginator<int, Recipe>
      */
     public function paginate(RecipeSearchServiceConfiguration $configuration): LengthAwarePaginator;
 }
