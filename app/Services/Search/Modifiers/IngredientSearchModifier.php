@@ -23,7 +23,7 @@ class IngredientSearchModifier implements QueryModifierInterface
         }
 
         $query->whereHas('ingredients', function (Builder $query) use ($configuration) {
-            // Partial keyword match against the recipe's instruction list
+            // Partial keyword match against the recipe's instruction list. Boolean mode allows us to partially match.
             $query->whereRaw('MATCH(name) AGAINST (? IN BOOLEAN MODE)', [$configuration->ingredient.'*']);
         });
     }

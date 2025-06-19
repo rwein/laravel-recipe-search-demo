@@ -24,6 +24,8 @@ class EmailSearchModifier implements QueryModifierInterface
         }
 
         $query->whereHas('author', function (Builder $query) use ($configuration) {
+            // Note: Laravel does have a `whereFullText` method, but it only supports natural language mode.
+            // We're using boolean mode here (and in other places) to allow for exact matches.
             $query->whereRaw(
                 'MATCH(email) AGAINST (? IN BOOLEAN MODE)',
                 // Wrap our email in double quotes to instruct Mysql to get an exact match.
