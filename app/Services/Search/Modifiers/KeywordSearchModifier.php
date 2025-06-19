@@ -25,17 +25,20 @@ class KeywordSearchModifier implements QueryModifierInterface
         }
 
         $query->where(function (Builder $query) use ($configuration) {
+            // Note: for partial matches, use boolean mode with a wildcard. See EmailSearchModifier for an example.
+            // Otherwise, for exact matches, we can use natural language mode (with whereFullText()).
+
             // Keyword match against the recipe's name
-            $query->whereRaw('MATCH(name) AGAINST (? IN BOOLEAN MODE)', [$configuration->keyword])
+            $query->whereFullText('name', $configuration->keyword)
                 // Keyword match against the recipe's description
-                ->orWhereRaw('MATCH(description) AGAINST (? IN BOOLEAN MODE)', [$configuration->keyword])
+                ->orWhereFullText('description', $configuration->keyword)
                 // Keyword match against the recipe's ingredient list
                 ->orWhereHas('ingredients', function (Builder $query) use ($configuration) {
-                    $query->whereRaw('MATCH(name) AGAINST (? IN BOOLEAN MODE)', [$configuration->keyword]);
+                    $query->whereFullText('name', $configuration->keyword);
                 })
                 // Keyword match against the recipe's instruction list
                 ->OrWhereHas('steps', function (Builder $query) use ($configuration) {
-                    $query->whereRaw('MATCH(instructions) AGAINST (? IN BOOLEAN MODE)', [$configuration->keyword]);
+                    $query->whereFullText('instructions', $configuration->keyword);
                 });
         });
     }
