@@ -53,7 +53,10 @@ class Recipe extends Model
      * @var array<string, class-string>
      */
     protected $dispatchesEvents = [
-        // Generates a slug automatically when the model is inserted into the DB for the first time
+        // Generates a slug automatically when the model is inserted into the DB for the first time. Could also use
+        // a model observer instead of this. I tend to slightly prefer the loose coupling using $dispatchesEvents
+        // affords, it can be very nice to have a single model observer that is a "manisfest" or sorts for what happens
+        // automatically during a model's lifecycle.
         'creating' => RecipeCreatingEvent::class,
     ];
 
